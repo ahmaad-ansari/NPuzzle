@@ -21,6 +21,12 @@ public class Solution {
         // Create the Puzzle object
         Puzzle puzzle = new Puzzle(size, board);
 
+        // Check if the puzzle is solvable
+        if (!puzzle.isSolvable()) {
+            System.out.println("No solution");
+            return;
+        }
+
         // Solve the puzzle
         List<String> solution = puzzle.solve();
 

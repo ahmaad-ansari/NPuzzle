@@ -34,9 +34,12 @@ class Node implements Comparable<Node> {
     }
 
     public boolean isGoal() {
-        int h = heuristic();
-        if (h != 0) {
-            return false;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                if (board[i][j] != i * board.length + j && (i != board.length - 1 || j != board.length - 1)) {
+                    return false;
+                }
+            }
         }
         return true;
     }

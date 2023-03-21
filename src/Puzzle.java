@@ -22,6 +22,25 @@ class Puzzle {
         }
     }
 
+    public boolean isSolvable() {
+        int inversions = 0;
+        for (int i = 0; i < size * size - 1; i++) {
+            for (int j = i + 1; j < size * size; j++) {
+                int row1 = i / size, col1 = i % size;
+                int row2 = j / size, col2 = j % size;
+                if (board[row1][col1] != 0 && board[row2][col2] != 0 && board[row1][col1] > board[row2][col2]) {
+                    inversions++;
+                }
+            }
+        }
+        if (size % 2 == 1) {
+            return inversions % 2 == 0;
+        } else {
+            int row = blankRow;
+            return (row + inversions) % 2 == 1;
+        }
+    }
+
     public List<String> solve() {
         List<String> directions = new ArrayList<>();
         PriorityQueue<Node> frontier = new PriorityQueue<>();
